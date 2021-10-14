@@ -1,10 +1,16 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 
-const TodoItem = () => {
+const TodoItem = ({todo, toggleTask, removeTask}) => {
+
+  const {id, task} = todo;
+
   return (
     <div>
-      <div></div>
-      <div>X</div>
+      <div
+        onClick={() => toggleTask(id)}>{task}</div>
+      <div
+        onClick={() => removeTask(id)}>X</div>
     </div>
   );
 };

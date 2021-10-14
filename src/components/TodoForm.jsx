@@ -7,7 +7,8 @@ const TodoForm = ({addTask}) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    addTask(userInputText);
+    addTask(userInputText.trim());
+    setUserInputText(``);
   };
 
   const handleChange = ({target}) => {

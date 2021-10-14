@@ -1,23 +1,31 @@
 import React, {useState} from 'react';
-import TodoForm from './components/TodoForm';
-import TodoItem from './components/TodoItem';
+import '../assets/styles.css';
+import {nextTodoId} from '../utils/auxilliary';
+import TodoForm from './TodoForm';
+import TodoItem from './TodoItem';
 
 function App() {
 
   const [todos, setTodos] = useState([]);
 
-  const handleRemoveTask = () => {
+  const handleRemoveTask = (id) => {
+    const temps = todos.filter(todo => todo.id !== id);
 
+    setTodos([...temps]);
   };
 
-  const handleToggleTask = () => {
+  const handleToggleTask = (id) => {
+    const temps = todos.map(todo => (
+      todo.id === id ? ({...todo, completed: !todo.completed}) : ({...todo})
+    ));
 
+    setTodos([...temps]);
   };
 
   const handleAddTask = (userInputText) => {
-    if (userInputText.trim()) {
+    if (userInputText) {
       const newTask = {
-        id: Math.random().toString(36).substr(2,9),
+        id: nextTodoId(todos),
         task: userInputText,
         completed: false,
       };
@@ -31,7 +39,7 @@ function App() {
       <header>Tasks: {todos.length}</header>
       <TodoForm
         addTask={handleAddTask} />
-      {todos.map((todo) => {
+      {todos.map(todo => {
         return (
           <TodoItem
             key={todo.id}
