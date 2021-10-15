@@ -6,10 +6,12 @@ const TodoItem = ({todo, toggleTask, removeTask}) => {
   const {id, task} = todo;
 
   return (
-    <div>
+    <div className="item-todo">
       <div
+        className={todo.completed ? "item-text strike" : "item-text"}
         onClick={() => toggleTask(id)}>{task}</div>
       <div
+        className="item-delete"
         onClick={() => removeTask(id)}>X</div>
     </div>
   );
