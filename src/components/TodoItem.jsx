@@ -12,7 +12,7 @@ const TodoItem = ({todo, toggleTask, removeTask}) => {
         onClick={() => toggleTask(id)}>{task}</div>
       <div
         className="item-delete"
-        onClick={() => removeTask(id)}>X</div>
+        onClick={() => removeTask(id)}>&#10060;</div>
     </div>
   );
 };
